@@ -1668,4 +1668,31 @@ public class Smoke_Test {
 
         assertThat(getBlobs.getBulkObjectListResult(), is(notNullValue()));
     }
+
+    @Test
+    public void tmp() throws IOException,
+            URISyntaxException {
+        final String bucketName = "test_contents_bucket";
+
+        try {
+            HELPERS.ensureBucketExists(bucketName, envDataPolicyId);
+            loadBookTestData(client, bucketName);
+
+            final GetBucketResponse response = client
+                    .getBucket(new GetBucketRequest(bucketName));
+
+            final ListBucketResult result = response.getListBucketResult();
+
+            assertFalse(result.getObjects().isEmpty());
+            assertThat(result.getObjects().size(), is(4));
+
+            for (final Contents obj : result.getObjects()) {
+                final GetObjectDetailsSpectraS3Response resp = client.getObjectDetailsSpectraS3(new GetObjectDetailsSpectraS3Request(obj.getKey(), bucketName));
+
+                System.out.printf("%s | %s | %s\n", bucketName, resp.getS3ObjectResult().getId(), obj.getKey());
+            }
+        } finally {
+//            deleteAllContents(client, bucketName);
+        }
+    }
 }
