@@ -14,8 +14,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+// The following program deletes specific versions of objects from a BP that are listed in a csv.
+// The csv must be of format: bucketName | objectId | objectName
 public class DeleteObjectsProgram {
-    public static void main(final String args[]) {
+    public static void main(final String[] args) {
         if (args.length < 4) {
             System.out.println("Must specify args: endpoint accessKey secretKey fileWithObjectsToDelete");
             return;
@@ -34,18 +36,33 @@ public class DeleteObjectsProgram {
             final GetSystemInformationSpectraS3Response sysreponse = client.getSystemInformationSpectraS3(new GetSystemInformationSpectraS3Request());
             System.out.println(sysreponse.getSystemInformationResult().getApiVersion());
 
+            // open the csv file and read one line at a time
             BufferedReader csvReader = new BufferedReader(new FileReader(fileToDelete));
             String row;
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split("\\|");
                 if (data.length < 3) {
+                    // malformed line, skip it
                     continue;
                 }
                 final String bucketName = data[0].trim();
                 final String objectId = data[1].trim();
-                final String objectName = data[2].trim();
+                String objectName = data[2].trim();
+
+                // The following characters were represented in string format not their actual encoded form within the csv.
+                // Manually converting the known symbols to proper representation for the delete process.
+                //
+                // objectName = objectName.replace("\\x7F", "\u007F");
+                // objectName = objectName.replace("\\u0092", "\u0092");
+
+                // The windows control character \u009d is percent encoded incorrectly
+                // escaper encodes this as "%C2%9D", but BP needs it as "%26%23157%3B"
+                // the string escaper has to be modified to perform a replace for this to work.
+                //
+                // objectName = objectName.replace("\\u009D", "\u009D");
 
                 try {
+                    // Attempt to delete the object with the specified version
                     client.deleteObject(new DeleteObjectRequest(bucketName, objectName).withVersionId(objectId));
                 } catch (final Exception e) {
                     System.out.printf("Failed to delete object '%s' in bucket '%s': %s\n", objectName, bucketName, e);
@@ -82,7 +99,7 @@ public class DeleteObjectsProgram {
 
         } catch (final IOException e) {
 
-            System.out.printf("Encountered error: %s\n", e.toString());
+            System.out.printf("Encountered error: %s\n", e);
 
         }
     }
