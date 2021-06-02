@@ -20,6 +20,8 @@ import com.spectralogic.ds3client.annotations.Action;
 import com.spectralogic.ds3client.annotations.Resource;
 import com.spectralogic.ds3client.annotations.ResponsePayloadModel;
 import com.spectralogic.ds3client.commands.*;
+import com.spectralogic.ds3client.commands.internal.*;
+import com.spectralogic.ds3client.commands.internal.notifications.*;
 import com.spectralogic.ds3client.commands.spectrads3.*;
 import com.spectralogic.ds3client.commands.spectrads3.notifications.*;
 import com.spectralogic.ds3client.models.JobNode;
@@ -2517,6 +2519,76 @@ public interface Ds3Client extends Closeable {
     @Resource("USER")
     
     RegenerateUserSecretKeySpectraS3Response regenerateUserSecretKeySpectraS3(final RegenerateUserSecretKeySpectraS3Request request)
+            throws IOException;
+
+    
+    
+    GetCacheEntriesInternalResponse getCacheEntriesInternal(final GetCacheEntriesInternalRequest request)
+            throws IOException;
+
+    
+    
+    PutGenericDaoNotificationRegistrationInternalResponse putGenericDaoNotificationRegistrationInternal(final PutGenericDaoNotificationRegistrationInternalRequest request)
+            throws IOException;
+
+    
+    
+    DeleteGenericDaoNotificationRegistrationInternalResponse deleteGenericDaoNotificationRegistrationInternal(final DeleteGenericDaoNotificationRegistrationInternalRequest request)
+            throws IOException;
+
+    
+    
+    GetGenericDaoNotificationRegistrationInternalResponse getGenericDaoNotificationRegistrationInternal(final GetGenericDaoNotificationRegistrationInternalRequest request)
+            throws IOException;
+
+    
+    
+    GetGenericDaoNotificationRegistrationsInternalResponse getGenericDaoNotificationRegistrationsInternal(final GetGenericDaoNotificationRegistrationsInternalRequest request)
+            throws IOException;
+
+    
+    
+    PutFeatureKeyInternalResponse putFeatureKeyInternal(final PutFeatureKeyInternalRequest request)
+            throws IOException;
+
+    
+    
+    PutHeapDumpInternalResponse putHeapDumpInternal(final PutHeapDumpInternalRequest request)
+            throws IOException;
+
+    
+    
+    DeleteFeatureKeyInternalResponse deleteFeatureKeyInternal(final DeleteFeatureKeyInternalRequest request)
+            throws IOException;
+
+    
+    
+    GetBeansRetrieverBeansInternalResponse getBeansRetrieverBeansInternal(final GetBeansRetrieverBeansInternalRequest request)
+            throws IOException;
+
+    
+    
+    GetBeansRetrieversInternalResponse getBeansRetrieversInternal(final GetBeansRetrieversInternalRequest request)
+            throws IOException;
+
+    
+    
+    QuiesceDataPathToPrepareForShutdownInternalResponse quiesceDataPathToPrepareForShutdownInternal(final QuiesceDataPathToPrepareForShutdownInternalRequest request)
+            throws IOException;
+
+    
+    
+    PutFakeTapeEnvironmentInternalResponse putFakeTapeEnvironmentInternal(final PutFakeTapeEnvironmentInternalRequest request)
+            throws IOException;
+
+    
+    
+    PutUserInternalResponse putUserInternal(final PutUserInternalRequest request)
+            throws IOException;
+
+    
+    
+    DeleteUserInternalResponse deleteUserInternal(final DeleteUserInternalRequest request)
             throws IOException;
 
     

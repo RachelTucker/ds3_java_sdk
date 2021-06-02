@@ -18,6 +18,8 @@ package com.spectralogic.ds3client;
 
 import java.io.IOException;
 import com.spectralogic.ds3client.commands.*;
+import com.spectralogic.ds3client.commands.internal.*;
+import com.spectralogic.ds3client.commands.internal.notifications.*;
 import com.spectralogic.ds3client.commands.parsers.*;
 import com.spectralogic.ds3client.commands.spectrads3.*;
 import com.spectralogic.ds3client.commands.spectrads3.notifications.*;
@@ -1536,6 +1538,62 @@ public class Ds3ClientImpl implements Ds3Client {
     @Override
     public RegenerateUserSecretKeySpectraS3Response regenerateUserSecretKeySpectraS3(final RegenerateUserSecretKeySpectraS3Request request) throws IOException {
         return new RegenerateUserSecretKeySpectraS3ResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public GetCacheEntriesInternalResponse getCacheEntriesInternal(final GetCacheEntriesInternalRequest request) throws IOException {
+        return new GetCacheEntriesInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public PutGenericDaoNotificationRegistrationInternalResponse putGenericDaoNotificationRegistrationInternal(final PutGenericDaoNotificationRegistrationInternalRequest request) throws IOException {
+        return new PutGenericDaoNotificationRegistrationInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public DeleteGenericDaoNotificationRegistrationInternalResponse deleteGenericDaoNotificationRegistrationInternal(final DeleteGenericDaoNotificationRegistrationInternalRequest request) throws IOException {
+        return new DeleteGenericDaoNotificationRegistrationInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public GetGenericDaoNotificationRegistrationInternalResponse getGenericDaoNotificationRegistrationInternal(final GetGenericDaoNotificationRegistrationInternalRequest request) throws IOException {
+        return new GetGenericDaoNotificationRegistrationInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public GetGenericDaoNotificationRegistrationsInternalResponse getGenericDaoNotificationRegistrationsInternal(final GetGenericDaoNotificationRegistrationsInternalRequest request) throws IOException {
+        return new GetGenericDaoNotificationRegistrationsInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public PutFeatureKeyInternalResponse putFeatureKeyInternal(final PutFeatureKeyInternalRequest request) throws IOException {
+        return new PutFeatureKeyInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public PutHeapDumpInternalResponse putHeapDumpInternal(final PutHeapDumpInternalRequest request) throws IOException {
+        return new PutHeapDumpInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public DeleteFeatureKeyInternalResponse deleteFeatureKeyInternal(final DeleteFeatureKeyInternalRequest request) throws IOException {
+        return new DeleteFeatureKeyInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public GetBeansRetrieverBeansInternalResponse getBeansRetrieverBeansInternal(final GetBeansRetrieverBeansInternalRequest request) throws IOException {
+        return new GetBeansRetrieverBeansInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public GetBeansRetrieversInternalResponse getBeansRetrieversInternal(final GetBeansRetrieversInternalRequest request) throws IOException {
+        return new GetBeansRetrieversInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public QuiesceDataPathToPrepareForShutdownInternalResponse quiesceDataPathToPrepareForShutdownInternal(final QuiesceDataPathToPrepareForShutdownInternalRequest request) throws IOException {
+        return new QuiesceDataPathToPrepareForShutdownInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public PutFakeTapeEnvironmentInternalResponse putFakeTapeEnvironmentInternal(final PutFakeTapeEnvironmentInternalRequest request) throws IOException {
+        return new PutFakeTapeEnvironmentInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public PutUserInternalResponse putUserInternal(final PutUserInternalRequest request) throws IOException {
+        return new PutUserInternalResponseParser().response(this.netClient.getResponse(request));
+    }
+    @Override
+    public DeleteUserInternalResponse deleteUserInternal(final DeleteUserInternalRequest request) throws IOException {
+        return new DeleteUserInternalResponseParser().response(this.netClient.getResponse(request));
     }
 
     @Override
